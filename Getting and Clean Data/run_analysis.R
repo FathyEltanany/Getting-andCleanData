@@ -65,5 +65,5 @@
     }
   }
   
-  write.table(tidyData, "AvgData.txt") 
+  write.table(tidyData, "tidyData.txt") 
   
