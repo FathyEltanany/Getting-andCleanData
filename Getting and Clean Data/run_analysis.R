@@ -9,12 +9,13 @@
   #read data
   subjectTrain <- fread(file.path(path, "train", "subject_train.txt"))
   subjectTest  <- fread(file.path(path, "test" , "subject_test.txt" ))
-  print("done read")
+  
   activityTrain <- fread(file.path(path, "train", "Y_train.txt"))
   activityTest  <- fread(file.path(path, "test" , "Y_test.txt" ))
   
   train_data<- read.table(file.path(path,"train","X_train.txt"))
   test_data<- read.table(file.path(path,"test","X_test.txt"))
+  print("done read")
   
   #merge subdata
   subject<-rbind(subjectTrain,subjectTest)
@@ -38,7 +39,7 @@
   meanstd <- grep("mean\\(\\)|std\\(\\)", features[, 2])
   data<-data[,meanstd]
   
-  #use descripive 
+  #use descripive names
   activity <- fread(file.path(path,"activity_labels.txt"))
   setnames(activity,names(activity),c("activityNum","activityName"))
   
@@ -51,8 +52,8 @@
   tidyData<-as.data.frame(tidyData)
   colnames(tidyData)<-colnames(data)
   write.table(tidyData, "mergedData.txt")
+
   #make tidy dataset
-  
   row <- 1
   for(i in 1:dataLen) {
     for(j in 1:activityLen) {
