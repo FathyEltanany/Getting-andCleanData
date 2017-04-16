@@ -37,10 +37,6 @@
   features<-fread(file.path(path,"features.txt"))
   meanstd <- grep("mean\\(\\)|std\\(\\)", features[, 2])
   data<-data[,meanstd]
-  names(data) <- gsub("\\(\\)", "", features[meanstd, 2]) # remove "()"
-  names(data) <- gsub("mean", "Mean", names(data)) # capitalize M
-  names(data) <- gsub("std", "Std", names(data)) # capitalize S
-  names(data) <- gsub("-", "", names(data)) # remove "-" in column names 
   
   #use descripive 
   activity <- fread(file.path(path,"activity_labels.txt"))
